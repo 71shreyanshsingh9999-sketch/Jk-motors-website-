@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-heading: 'Bricolage Grotesque', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --color-navy: #0B2447;
+    --color-navy-dark: #051429;
+    --color-yellow: #FFC727;
+    --color-yellow-hover: #e6b21f;
+    --color-wa: #25D366;
+  }
+
+  body {
+    font-family: var(--font-body);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Custom left-cut price badge requested: "photo par peela price-tag (left kata hua)" */
+.price-tag-cut {
+  clip-path: polygon(14px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 14px);
+}
+
+.price-tag-chamfer {
+  clip-path: polygon(12px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 12px);
+}
+
+/* Road-stripe dashed line */
+.road-stripe {
+  background: repeating-linear-gradient(
+    90deg,
+    #FFC727 0px,
+    #FFC727 24px,
+    transparent 24px,
+    transparent 44px
+  );
+}
+
+.road-stripe-animated {
+  background: repeating-linear-gradient(
+    90deg,
+    #FFC727 0px,
+    #FFC727 24px,
+    transparent 24px,
+    transparent 44px
+  );
+  background-size: 88px 100%;
+  animation: roadMove 2.5s linear infinite;
+}
+
+@keyframes roadMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 88px 0;
+  }
+}
+
+/* Hide scrollbar for clean horizontal chips */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

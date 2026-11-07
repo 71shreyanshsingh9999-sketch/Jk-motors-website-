@@ -1,0 +1,6 @@
+{
+  "name": "JK Motors - Pre-Owned Car Showroom",
+  "description": "Nashik's premier pre-owned car showroom. Certified second hand cars, video walkthroughs, instant WhatsApp booking, and inventory management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
