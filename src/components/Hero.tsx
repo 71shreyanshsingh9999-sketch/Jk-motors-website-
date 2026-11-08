@@ -1,7 +1,7 @@
 import React from 'react';
 import { MessageCircle, ArrowDown, Award, Banknote, Play, CheckCircle2 } from 'lucide-react';
 import { Car, ShowroomConfig } from '../types';
-import { formatINR, createGeneralWhatsAppChatUrl } from '../utils/helpers';
+import { formatINR, createGeneralWhatsAppChatUrl, getAssetUrl } from '../utils/helpers';
 import { useLanguage } from '../context/LanguageContext';
 
 interface HeroProps {
@@ -117,7 +117,7 @@ export const Hero: React.FC<HeroProps> = ({
                   onClick={() => onSelectCar(featuredCar)}
                 >
                   <img
-                    src={featuredCar.images[0] || '/assets/aistudio/IMG-20261104-WA0006_a918259b.jpg'}
+                    src={getAssetUrl(featuredCar.images[0] || 'assets/aistudio/IMG-20261104-WA0006_a918259b.jpg')}
                     alt={featuredCar.title}
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

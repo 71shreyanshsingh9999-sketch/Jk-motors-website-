@@ -66,3 +66,28 @@ export function createGeneralWhatsAppChatUrl(config: ShowroomConfig, customText?
   const defaultText = `Namaste Naresh sir! 🙏 Main JK Motors Nashik ki website dekh raha hoon. Mujhe pre-owned gaadiyon ki availability aur finance ke baare mein jaankari chahiye.`;
   return `https://wa.me/${phone}?text=${encodeURIComponent(customText || defaultText)}`;
 }
+
+/**
+ * Resolves static asset paths (like car images and videos) accurately across all environments.
+ * Works seamlessly on GitHub Pages subpaths (https://username.github.io/repo-name/),
+ * root custom domains, and local preview servers.
+ */
+export function getAssetUrl(path: string | undefined | null): string {
+  if (!path) return '';
+  // Keep external URLs or data/blob URIs untouched
+  if (
+    path.startsWith('http://') ||
+    path.startsWith('https://') ||
+    path.startsWith('data:') ||
+    path.startsWith('blob:')
+  ) {
+    return path;
+  }
+  // Strip leading slash if any
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  // Use Vite's BASE_URL (defaults to './' with base: './')
+  const base = import.meta.env.BASE_URL || './';
+  const normalizedBase = base.endsWith('/') ? base : `${base}/`;
+  return `${normalizedBase}${cleanPath}`;
+}
+

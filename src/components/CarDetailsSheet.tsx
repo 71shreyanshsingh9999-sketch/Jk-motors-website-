@@ -19,7 +19,7 @@ import {
   Check
 } from 'lucide-react';
 import { Car, ShowroomConfig } from '../types';
-import { formatINR, formatKm, calculateEMI } from '../utils/helpers';
+import { formatINR, formatKm, calculateEMI, getAssetUrl } from '../utils/helpers';
 import { useLanguage } from '../context/LanguageContext';
 
 interface CarDetailsSheetProps {
@@ -46,7 +46,7 @@ export const CarDetailsSheet: React.FC<CarDetailsSheetProps> = ({
   const [tenureYears, setTenureYears] = useState(4);
   const [copied, setCopied] = useState(false);
 
-  const images = car.images.length > 0 ? car.images : ['/assets/aistudio/IMG-20261104-WA0006_a918259b.jpg'];
+  const images = car.images.length > 0 ? car.images : ['assets/aistudio/IMG-20261104-WA0006_a918259b.jpg'];
   const calculatedEmi = calculateEMI(car.price, downPaymentPercent, 10.5, tenureYears * 12);
   const downPaymentAmount = Math.round(car.price * (downPaymentPercent / 100));
   const loanAmount = car.price - downPaymentAmount;
@@ -182,7 +182,7 @@ export const CarDetailsSheet: React.FC<CarDetailsSheetProps> = ({
               <div>
                 <div className="relative aspect-video rounded-2xl overflow-hidden bg-slate-950 shadow-md">
                   <img
-                    src={images[activeImageIndex]}
+                    src={getAssetUrl(images[activeImageIndex])}
                     alt={`${car.title} photo ${activeImageIndex + 1}`}
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-contain sm:object-cover"
@@ -230,7 +230,7 @@ export const CarDetailsSheet: React.FC<CarDetailsSheetProps> = ({
                             : 'border-transparent opacity-60 hover:opacity-100'
                         }`}
                       >
-                        <img src={img} alt="thumb" referrerPolicy="no-referrer" className="w-full h-full object-cover" />
+                        <img src={getAssetUrl(img)} alt="thumb" referrerPolicy="no-referrer" className="w-full h-full object-cover" />
                       </button>
                     ))}
                   </div>
@@ -243,7 +243,7 @@ export const CarDetailsSheet: React.FC<CarDetailsSheetProps> = ({
               <div className="space-y-2">
                 <div className="relative aspect-video rounded-2xl overflow-hidden bg-black shadow-lg">
                   <video
-                    src={car.videoUrl}
+                    src={getAssetUrl(car.videoUrl)}
                     controls
                     autoPlay
                     playsInline

@@ -24,7 +24,7 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { Car, ShowroomConfig, FirebaseConfigState, FuelType, BodyType, TransmissionType } from '../types';
-import { formatINR, formatKm } from '../utils/helpers';
+import { formatINR, formatKm, getAssetUrl } from '../utils/helpers';
 import { 
   upsertCar, 
   removeCar, 
@@ -732,7 +732,7 @@ service cloud.firestore {
                         <div className="flex flex-wrap gap-2.5">
                           {(editingCar.images || []).map((img, idx) => (
                             <div key={idx} className="relative w-24 h-16 rounded-xl overflow-hidden border-2 border-slate-300 dark:border-slate-700 group bg-slate-950 shadow-sm">
-                              <img src={img} alt="car" referrerPolicy="no-referrer" className="w-full h-full object-cover" />
+                              <img src={getAssetUrl(img)} alt="car" referrerPolicy="no-referrer" className="w-full h-full object-cover" />
                               {idx === 0 && (
                                 <span className="absolute top-1 left-1 bg-[#FFC727] text-[#0B2447] text-[9px] font-extrabold px-1 rounded">
                                   Cover
@@ -803,7 +803,7 @@ service cloud.firestore {
                                 className="w-10 h-8 rounded-lg border border-slate-300 dark:border-slate-700 overflow-hidden hover:scale-110 transition-transform cursor-pointer"
                                 title="Click to add photo"
                               >
-                                <img src={p} alt="preset" className="w-full h-full object-cover" />
+                                <img src={getAssetUrl(p)} alt="preset" className="w-full h-full object-cover" />
                               </button>
                             ))}
                           </div>
@@ -1035,7 +1035,7 @@ service cloud.firestore {
                             <div className="flex items-center gap-3">
                               <div className="w-16 h-12 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 relative">
                                 <img
-                                  src={c.images[0] || PRESET_SHOWROOM_PHOTOS[0]}
+                                  src={getAssetUrl(c.images[0] || PRESET_SHOWROOM_PHOTOS[0])}
                                   alt={c.title}
                                   className="w-full h-full object-cover"
                                 />
@@ -1343,6 +1343,41 @@ service cloud.firestore {
   }
 }`}
                     </pre>
+                  </div>
+
+                  {/* GitHub Pages 1-Click Deployment Card */}
+                  <div className="p-4 bg-emerald-50 dark:bg-emerald-950/30 rounded-2xl border border-emerald-200 dark:border-emerald-800 space-y-3">
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-lg bg-[#0B2447] text-[#FFC727] flex items-center justify-center font-bold text-xs">
+                        GH
+                      </div>
+                      <h4 className="font-bold text-sm text-slate-900 dark:text-white">
+                        GitHub Pages Setup (Configured & Ready!)
+                      </h4>
+                    </div>
+
+                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                      Your Vite configuration, relative asset paths (<code className="font-mono text-emerald-700 dark:text-emerald-300">base: './'</code>), <code className="font-mono">.nojekyll</code>, and GitHub Actions workflow (<code className="font-mono">.github/workflows/deploy.yml</code>) are already generated.
+                    </p>
+
+                    <div className="space-y-1.5 text-[11px] text-slate-700 dark:text-slate-300">
+                      <div className="flex items-start gap-2">
+                        <span className="font-bold text-[#0B2447] dark:text-[#FFC727]">Step 1:</span>
+                        <span>Push this code to your GitHub repository (<code className="font-mono">git push origin main</code>).</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="font-bold text-[#0B2447] dark:text-[#FFC727]">Step 2:</span>
+                        <span>Open your repo on GitHub &rarr; go to <strong>Settings</strong> &rarr; <strong>Pages</strong>.</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="font-bold text-[#0B2447] dark:text-[#FFC727]">Step 3:</span>
+                        <span>Under <strong>Build and deployment &gt; Source</strong>, select <strong>GitHub Actions</strong>.</span>
+                      </div>
+                    </div>
+
+                    <p className="text-[11px] text-emerald-800 dark:text-emerald-300 font-semibold pt-1">
+                      That&apos;s it! GitHub Actions will automatically build <code className="font-mono">dist</code> and publish your site with 100% working CSS, fonts, images, and WhatsApp booking!
+                    </p>
                   </div>
                 </div>
               )}

@@ -3,6 +3,7 @@ import { Instagram, Users } from 'lucide-react';
 import { HAPPY_DELIVERIES } from '../data/defaultCars';
 import { ShowroomConfig } from '../types';
 import { useLanguage } from '../context/LanguageContext';
+import { getAssetUrl } from '../utils/helpers';
 
 interface CustomerStoriesProps {
   config: ShowroomConfig;
@@ -48,7 +49,7 @@ export const CustomerStories: React.FC<CustomerStoriesProps> = ({ config }) => {
           >
             <div className="aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-slate-800">
               <img
-                src={item.image}
+                src={getAssetUrl(item.image)}
                 alt={item.car}
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

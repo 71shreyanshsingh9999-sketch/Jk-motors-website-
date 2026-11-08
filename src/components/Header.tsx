@@ -91,12 +91,22 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
         {/* Brand Logo & Name */}
         <a href="#" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#FFC727] to-[#e6b21f] flex items-center justify-center text-[#0B2447] font-extrabold shadow-md shadow-yellow-500/20 group-hover:scale-105 transition-transform">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#FFC727] to-[#e6b21f] flex items-center justify-center text-[#0B2447] font-extrabold shadow-md shadow-yellow-500/20 group-hover:scale-105 transition-transform shrink-0">
             <svg
-              className="w-6 h-6 fill-current"
+              width="24"
+              height="24"
               viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-6 h-6 shrink-0"
+              style={{ width: '24px', height: '24px', minWidth: '24px', maxWidth: '24px' }}
             >
-              <path d="M12 2L15 8L21 9L17 14L18 20L12 17L6 20L7 14L3 9L9 8L12 2Z" />
+              {/* Crown on top */}
+              <path d="M5 4.5L7.5 7L12 3.5L16.5 7L19 4.5L18 9H6L5 4.5Z" fill="#0B2447" />
+              {/* Shield Body */}
+              <path d="M4.5 9.5C4.5 9.5 4.5 16 12 21C19.5 16 19.5 9.5 19.5 9.5H4.5Z" fill="#0B2447" />
+              {/* Letters JK inside */}
+              <text x="12" y="16.2" textAnchor="middle" fill="#FFC727" fontSize="7" fontWeight="900" fontFamily="sans-serif">JK</text>
             </svg>
           </div>
           <div className="flex flex-col">

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Play, Calendar, Gauge, Fuel, Eye, MessageCircle } from 'lucide-react';
 import { Car } from '../types';
-import { formatINR, formatKm, calculateEMI } from '../utils/helpers';
+import { formatINR, formatKm, calculateEMI, getAssetUrl } from '../utils/helpers';
 import { useLanguage } from '../context/LanguageContext';
 
 interface CarCardProps {
@@ -16,7 +16,7 @@ export const CarCard: React.FC<CarCardProps> = ({
   onBookNow,
 }) => {
   const { t } = useLanguage();
-  const primaryImage = car.images[0] || '/assets/aistudio/IMG-20261104-WA0006_a918259b.jpg';
+  const primaryImage = getAssetUrl(car.images[0] || 'assets/aistudio/IMG-20261104-WA0006_a918259b.jpg');
   const emiAmount = calculateEMI(car.price);
 
   return (
