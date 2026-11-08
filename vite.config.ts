@@ -4,5 +4,6 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: './', // Ensures relative asset paths for GitHub Pages
+  base: '/Jk-motors-website/',
+  // Ensures relative asset paths for GitHub Pages
 })
